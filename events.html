@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Events</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">🎓</div>
+    <div class="title">GCWK</div>
+  </div>
+  <button class="back-btn" onclick="location.href='/logout'">Logout</button>
+</header>
+</body>
+</html>
+
+<center>
+<h1 class="subject-box">Events & Announcements</h1>
+</center>
+
+<div class="student-container">
+  {% for e in events %}
+    <div class="student-card">
+      <h3>{{ e.title }}</h3>
+      <small>{{ e.category }} • {{ e.date }}</small>
+      <p>{{ e.description }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+</body>
+</html>
+
+
+
+

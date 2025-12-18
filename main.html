@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GCWK-PORTAL</title>
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+  <div class="page" id="page">
+    <div class="dot-grid"></div>
+    <div class="glow blue"></div>
+    <div class="glow deep"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">🎓</div>
+        <div class="title">GCWK</div>
+      </div>
+        <button class="back-btn" onclick="history.back()">Back</button>  
+    </header>
+
+    <main class="hero" id="content">
+      <div class="members">
+        <div class="faces">
+          <div>👩</div>
+          <div>🧑</div>
+          <div>👵</div>
+        </div>
+        <div class="count">Age is no barrier to studies</div>
+      </div>
+
+      <h1 class="headline">
+        "You can't go back and change the beginning,<br>
+        but you can start where you are and change the ending."
+      </h1>
+
+      <p class="sub">
+        This is the phase where students often face struggles — failing subjects, feeling drained, and doubting themselves.  
+        Remember: failure is not the end, it is the spark of success.  
+        Stand tall, keep going, and trust that every step brings you closer to victory.
+      </p>
+<a href="{{ url_for('department') }}" class="cta">
+        <span>Get Started</span>
+        <span class="circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="M12 5l7 7-7 7"></path>
+          </svg>
+        </span>
+      </a>
+    </main>
+
+    <svg class="horizon" viewBox="0 0 1200 360" fill="none">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="100%" r="70%">
+          <stop offset="0%" stop-color="#1373ff" stop-opacity=".9"/>
+          <stop offset="60%" stop-color="#1373ff" stop-opacity=".25"/>
+          <stop offset="100%" stop-color="#1373ff" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="600" cy="340" rx="520" ry="160" fill="url(#glow)"/>
+    </svg>
+  </div>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

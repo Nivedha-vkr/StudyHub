@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCWK Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+</head>
+
+<body>
+
+<header>
+  <div class="brand">🎓 GCWK</div>
+  <div class="menu" onclick="openMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</header>
+
+<div class="motivation">
+  Learn Today, Lead Tomorrow
+</div>
+
+<div class="side-menu" id="sideMenu">
+  <div class="profile">
+    <img src="https://i.imgur.com/6VBx3io.png" alt="User">
+    <h3>Kavi Nilavu</h3>
+    <p>kavi@email.com</p>
+  </div>
+
+  <div class="menu-items">
+    <div onclick="menuAction('history')">🕘 History</div>
+    <div onclick="menuAction('download')">⬇️ Downloaded</div>
+    <div onclick="menuAction('settings')">⚙️ Settings</div>
+    <div onclick="menuAction('logout')">🚪 Logout</div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+<main class="container">
+  <div class="card" data-target="/batch"><div class="icon">📘</div><p>Study Material</p></div>
+  <div class="card" data-target="/previous-papers"><div class="icon">📄</div><p>Previous Papers</p></div>
+  <div class="card" data-target="/chatbot"><div class="icon">🤖</div><p>AI Chatbox</p></div>
+  <div class="card" data-target="/events"><div class="icon">🎉</div><p>Events</p></div>
+ 
+
+
+
+</main>
+<script src="{{ url_for('static', filename='home.js') }}"></script>
+
+</body>
+</html>

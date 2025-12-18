@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCWL | Study Material Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-left">
+    <div class="logo">🎓 GCWK</div>
+  </div>
+
+  <div class="nav-right">
+    <div class="login-text" onclick="goLogin()">
+      Already have an account? <b>Login</b>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Learn Today, Lead Tomorrow</h1>
+  <p>
+    A smart platform for students to access study materials, previous question papers,
+    events, and academic support — anytime, anywhere.
+  </p>
+</section>
+
+<!-- REGISTER CENTER BUTTON -->
+<div class="register-center">
+  <button class="register-btn" onclick="goRegister()">Register </button>
+</div>
+
+<!-- FEATURES -->
+<section class="features">
+  <h2>Platform Features</h2>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">📘</div>
+      <h4>Study Materials</h4>
+      <p>Access notes, PDFs, and subject-wise learning resources.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📝</div>
+      <h4>Previous Question Papers</h4>
+      <p>Prepare better using previous year exam papers.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📢</div>
+      <h4>Events & Announcements</h4>
+      <p>Get updates on exams, events, and important notices.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <h4>AI Learning Support</h4>
+      <p>Quick academic assistance through AI-powered tools.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 GCWL | Study Material Uploader
+</footer>
+<script src="{{ url_for('static', filename='landing.js') }}"></script>
+</body>
+</html>

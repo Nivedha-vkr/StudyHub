@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auth System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Signup -->
+    <div id="signupPage">
+      <h2>Create Account</h2>
+      <form id="signupForm" novalidate>
+        <label>Email</label>
+        <input type="text" id="signupEmail" placeholder="Enter Gmail address"/>
+        <div class="error-message" id="signupEmailError"></div>
+
+        <label>Username</label>
+        <input type="text" id="signupUsername" placeholder="Enter username"/>
+        <div class="error-message" id="signupUsernameError"></div>
+
+        <label>Password</label>
+        <input type="password" id="signupPassword" placeholder="Enter password"/>
+        <div class="error-message" id="signupPasswordError"></div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+      <p class="link">Already have an account? <a href="#" onclick="switchPage('loginPage')">Login</a></p>
+    </div>
+
+    <!-- Login -->
+    <div id="loginPage" class="hidden">
+      <h2>Login</h2>
+      <form id="loginForm" novalidate>
+        <label>Username</label>
+        <input type="text" id="loginUsername" placeholder="Enter Username"/>
+        <div class="error-message" id="loginUsernameError">Username must be 5-18 characters.</div>
+
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter Password"/>
+        <div class="error-message" id="loginPasswordError">Password must be 5-18 characters.</div>
+
+        <button type="submit">Login</button>
+      </form>
+      <p class="link"><a href="#" onclick="switchPage('forgotPage')">Forgot Password?</a></p>
+      <p class="link">Don’t have an account? <a href="#" onclick="switchPage('signupPage')">Sign up</a></p>
+    </div>
+
+    <!-- Forgot Password -->
+    <div id="forgotPage" class="hidden">
+      <h2>Forgot Password</h2>
+      <form id="forgotForm">
+        <input type="text" id="forgotUsername" placeholder="Username"/>
+        <div class="error-message" id="forgotUsernameError"></div>
+        <input type="text" id="forgotEmail" placeholder="Email"/>
+        <div class="error-message" id="forgotEmailError"></div>
+        <button type="submit">Submit</button>
+      </form>
+      <p class="link"><a onclick="switchPage('loginPage')">Back to Login</a></p>
+    </div> 
+  
+    <!-- Reset Password -->
+    <div id="resetPage" class="hidden">
+      <h2>Reset Password</h2>
+      <form id="resetForm" novalidate>
+        <label>New Password</label>
+        <input type="password" id="resetNew" placeholder="Enter New Password"/>
+        <div class="error-message" id="resetNewError"></div>
+
+        <label>Confirm Password</label>
+        <input type="password" id="resetConfirm" placeholder="Confirm Password"/>
+        <div class="error-message" id="resetConfirmError"></div>
+
+        <button type="submit">Update Password</button>
+      </form>
+      <p class="link"><a href="#" onclick="switchPage('loginPage')">Back to Login</a></p>
+    </div>
+
+  </div>
+  <script src="{{ url_for('static', filename='login.js') }}"></script>
+</body>
+</html>

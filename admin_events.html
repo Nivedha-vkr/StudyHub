@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Events</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='events.css') }}">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">🎓</div>
+    <div class="title">GCWK Admin</div>
+  </div>
+</header>
+
+<div class="page-container">
+
+  <!-- ADMIN FORM -->
+  <div class="admin-panel">
+    <h2>Create Announcement</h2>
+
+    <form method="POST" class="admin-form">
+      <input type="hidden" name="event_id" id="event_id">
+      <label>Title</label>
+      <input type="text" name="title" placeholder="Enter title" required>
+
+      <label>Description</label>
+      <textarea name="description" placeholder="Enter description" required></textarea>
+
+      <label>Date</label>
+      <input type="date" name="date" required>
+
+      <label>Category</label>
+      <select name="category">
+        <option>Event</option>
+        <option>Holiday</option>
+        <option>Exam</option>
+        <option>Announcement</option>
+      </select>
+
+      <button type="submit">Add Announcement</button>
+    </form>
+  </div>
+
+  <!-- EVENTS LIST -->
+<div class="materials">
+  {% for e in events %}
+  <div class="material-card">
+
+    <div class="card-content">
+      <h3>{{ e.title }}</h3>
+      <small>{{ e.category }} • {{ e.date }}</small>
+      <p>{{ e.description }}</p>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <!-- EDIT -->
+     <button class="btn-icon"
+        type="button"
+        title="Edit"
+        onclick="fillForm('{{ e.id }}',
+                           '{{ e.title }}',
+                           '{{ e.description }}',
+                           '{{ e.category }}',
+                           '{{ e.date }}')">
+  ✏
+</button>
+
+
+      <!-- DELETE -->
+      <form method="POST" action="{{ url_for('events.delete_event', id=e.id) }}">
+        <button class="btn-icon" title="Delete">🗑</button>
+       
+
+      </form>
+    </div>
+
+  </div>
+  {% endfor %}
+</div>
+
+</div>
+</body>
+</html>
+
+<script>
+function fillForm(id, title, description, category, date) {
+  document.getElementById("event_id").value = id;
+  document.querySelector("input[name='title']").value = title;
+  document.querySelector("textarea[name='description']").value = description;
+  document.querySelector("select[name='category']").value = category;
+  document.querySelector("input[name='date']").value = date;
+}
+</script>

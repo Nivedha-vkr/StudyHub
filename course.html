@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Select Degree & Year</title> 
+  <link rel="stylesheet" href="{{ url_for('static', filename='course.css') }}">
+</head>  
+<body>  
+
+<!-- Header -->  
+<header>  
+  <div class="brand">  
+    <div class="logo">🎓</div>  
+    <div class="title">GCWK</div>  
+  </div>  
+  <button class="back-btn" onclick="history.back()">Back</button>  
+</header>  
+
+<!-- Main Content -->  
+<div class="container">  
+  <h2>Select Your Degree, Year & Semester</h2>  
+
+  <!-- ✅ Real Form -->
+  <form method="POST" action="{{ url_for('course', batch_id=batch_id) }}">
+    <!-- Degree Selection -->  
+    <label for="degree">Select Your Degree:</label>  
+    <select id="degree" name="degree" required>  
+      <option value="">-- Choose Degree --</option>  
+      <option value="ug">UG</option>  
+      <option value="pg">PG</option>  
+    </select>  
+
+    <!-- Year Selection -->  
+    <label for="year">Select Your Year:</label>  
+    <select id="year" name="year" disabled required>  
+      <option value="">-- Select Year --</option>  
+    </select>  
+
+    <!-- Semester Selection -->  
+    <label for="semester">Select Your Semester:</label>  
+    <select id="semester" name="semester" disabled required>  
+      <option value="">-- Select Semester --</option>  
+    </select>  
+
+    <!-- Submit Button -->  
+    <button type="submit" class="submit-btn">Submit</button>  
+  </form>
+</div>  
+
+<!-- JS -->  
+<script src="{{ url_for('static', filename='course.js') }}"></script>
+</body>  
+</html>

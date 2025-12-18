@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GCWK Study Materials</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='material.css') }}">
+</head>
+<body>
+ 
+<!-- Header -->
+<header>  
+  <div class="brand">  
+    <div class="logo">🎓</div>  
+    <div class="title">GCWK</div>  
+  </div>  
+  <button class="back-btn" onclick="history.back()">Back</button>  
+</header>  
+  <!-- Subject Box -->
+  <div class="subject-box">
+    📘 Subject: {{ subject['name'] }}
+  </div>
+
+  <!-- Materials List -->
+  <div class="materials">
+    {% for note in notes %}
+      <div class="material-card" 
+           data-id="{{ note['id'] }}" 
+           data-title="{{ note['title'] }}"
+           ondblclick="editMaterial(this.dataset.id, this.dataset.title)">
+        <span>{{ note['title'] }}</span>
+        <div class="actions">
+          <a href="{{ url_for('download', mat_id=note['id']) }}" class="btn-icon" title="Download">⬇</a>
+          {% if session['role'] == 'admin' %}
+          <form action="{{ url_for('delete_material', mat_id=note['id']) }}" method="POST" style="display:inline;">
+              <button type="submit" class="btn-icon" title="Delete">🗑</button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if session['role'] == 'admin' %}
+  <!-- Add Notes Button -->
+  <button class="add-notes" onclick="openModal()">+ Add Notes</button>
+  {% endif %}
+
+  <!-- Modal -->
+  <div class="modal" id="noteModal">
+    <div class="modal-content">
+      <h3>Add New Note</h3>
+      <form action="{{ url_for('upload_material', subject_id=subject['id']) }}" method="POST" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="Enter Title" required>
+        <input type="file" name="file" accept="application/pdf" required>
+        <button type="submit">Upload</button>
+        <button type="button" onclick="closeModal()" style="background:#e63946;margin-left:8px;">Cancel</button>
+      </form>
+    </div>
+  </div>
+    <script src="{{ url_for('static', filename='material.js') }}"></script>
+</body>
+</html>

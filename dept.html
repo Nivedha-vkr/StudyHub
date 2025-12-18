@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Department | GCWK</title>
+ <link rel="stylesheet" href="{{ url_for('static', filename='dept.css') }}">
+
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🎓 GCWK</div>
+  <div class="menu">
+    <div></div><div></div><div></div>
+  </div>
+</header>
+
+<section class="main">
+  <div class="title">
+    <h2>Select Your Stream</h2>
+    <p>Choose your department to continue</p>
+  </div>
+
+  <div class="streams">
+    <div class="stream" onclick="openSheet('arts')">
+      <h3>Arts & Science</h3>
+      <span>UG & PG Departments</span>
+    </div>
+
+    <div class="stream" onclick="openSheet('eng')">
+      <h3>Engineering</h3>
+      <span>B.E / B.Tech Departments</span>
+    </div>
+  </div>
+</section>
+
+<div class="overlay" id="overlay" onclick="closeSheet()"></div>
+
+<div class="sheet" id="sheet">
+  <h3 id="sheetTitle"></h3>
+  <div class="options" id="options"></div>
+</div>
+
+<footer>
+  © 2025 GCWL | Study Material Uploader
+</footer>
+<script>
+  const HOME_URL = "{{ url_for('home') }}";
+</script>
+<script src="{{ url_for('static', filename='dept.js') }}"></script>
+</body>
+</html>

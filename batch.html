@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Year Batch</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='batch.css') }}">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>  
+    <div class="brand">  
+      <div class="logo">🎓</div>  
+      <div class="title">GCWK</div>  
+    </div>  
+    <button class="back-btn" onclick="history.back()">Back</button>  
+  </header>  
+
+  <!-- Main Section -->
+  <div class="main-content">
+    <h1>Select Your Batch</h1>
+
+    <div class="batch-buttons" id="batchList">
+      {% for batch in batches %}
+        <div class="batch-btn">
+          <!-- Batch Name (click → course) -->
+          <a href="{{ url_for('course', batch_id=batch['id']) }}" 
+             class="batch-text" 
+             data-id="{{ batch['id'] }}">
+             {{ batch['name'] }}
+          </a>
+
+          {% if session['role'] == 'admin' %}
+            <!-- Edit Button (Pencil) -->
+            <span class="edit-btn" data-id="{{ batch['id'] }}">✏️</span>
+            <!-- Delete Button (Trash) -->
+            <span class="delete-btn" data-id="{{ batch['id'] }}">🗑️</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if session['role'] == 'admin' %}
+      <button class="add-btn" onclick="addBatch()">+ Add Year</button>
+    {% endif %}
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <script src="{{ url_for('static', filename='batch.js') }}"></script>
+</body>
+</html>
