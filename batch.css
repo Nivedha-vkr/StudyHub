@@ -1,0 +1,136 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0d1b2a;
+  color: white;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #0d1b2a, #112f4a);
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.back-btn {  
+  background: linear-gradient(180deg, #00aaff, #0088cc);  
+  color: #fff;  
+  padding: 8px 14px;  
+  border-radius: 10px;  
+  font-weight: 600;  
+  font-size: 14px;  
+  box-shadow: 0 8px 20px rgba(0,170,255,0.18);  
+  width: auto;  
+  min-width: 70px;  
+  cursor: pointer;  
+  border: none;  
+
+  /* 👇 Add this */
+  margin-right: 15px;   /* moves inside from screen edge */
+}
+
+.back-btn:hover {
+  background: #0088cc;
+}
+
+/* New container to center main content */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* center horizontally */
+  width: 100%;
+  /* optional: max width to avoid being too wide */
+  max-width: 500px;
+  margin: 20px auto;        /* auto left-right margins to center */
+  padding: 0 15px;          /* some horizontal padding */
+}
+
+/* Heading inside main-content */
+.main-content h1 {
+  margin: 30px 0 15px;
+  font-size: 24px;
+  color: #fff;
+}
+
+/* Buttons container */
+.batch-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;              /* full inside main-content */
+}
+
+/* Individual batch button */
+.batch-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1e90ff, #00bfff);
+  color: white;
+  cursor: grab;
+  transition: 0.3s;
+}
+
+.batch-btn:active {
+  cursor: grabbing;
+}
+
+.batch-btn:hover {
+  background: linear-gradient(135deg, #00bfff, #1e90ff);
+}
+
+.sortable-ghost {
+  opacity: 0.6;
+  background: #0077cc;
+}
+
+.delete-btn {
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.add-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  background: #4db8ff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #3399ff;
+}
+
+.edit-input {
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  padding: 5px;
+  width: 100%;
+}

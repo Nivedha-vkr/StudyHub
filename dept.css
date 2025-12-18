@@ -1,0 +1,191 @@
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
+}
+
+body{
+  background:radial-gradient(circle at top,#1b2a4e,#0a1020);
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ================= NAVBAR ================= */
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 26px;
+  background:rgba(15,23,42,0.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+  font-size:21px;
+  font-weight:600;
+  letter-spacing:0.5px;
+}
+
+.menu div{
+  width:26px;
+  height:2.5px;
+  background:#fff;
+  margin:6px 0;
+  opacity:.9;
+}
+
+/* ================= MAIN ================= */
+.main{
+  flex:1;
+  max-width:1000px;
+  margin:auto;
+  padding:50px 20px;
+}
+
+.title{
+  text-align:center;
+  margin-bottom:45px;
+  animation:fadeUp .8s ease;
+}
+
+.title h2{
+  font-size:26px;
+}
+
+.title p{
+  opacity:.7;
+  margin-top:6px;
+}
+
+/* ================= STREAM CARDS ================= */
+.streams{
+  display:grid;
+  gap:30px;
+}
+
+@media(min-width:768px){
+  .streams{grid-template-columns:1fr 1fr;}
+}
+
+.stream{
+  padding:42px;
+  border-radius:24px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.15);
+  cursor:pointer;
+  transition:transform .4s ease, box-shadow .4s ease, background .4s;
+  animation:fadeUp .9s ease;
+}
+
+.stream:hover{
+  transform:translateY(-10px) scale(1.02);
+  background:rgba(255,255,255,.12);
+  box-shadow:0 20px 40px rgba(37,99,235,.35);
+}
+
+.stream h3{
+  font-size:22px;
+}
+
+.stream span{
+  font-size:14px;
+  opacity:.7;
+}
+
+/* ================= OVERLAY ================= */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;
+  z-index:10;
+  animation:fadeIn .4s ease;
+}
+
+/* ================= BOTTOM SHEET ================= */
+.sheet{
+  position:fixed;
+  left:50%;
+  bottom:-100%;
+  transform:translateX(-50%);
+  width:95%;
+  max-width:520px;
+  background:#0f172a;
+  border-radius:28px 28px 0 0;
+  padding:26px;
+  transition:bottom .45s cubic-bezier(.25,.8,.25,1);
+  z-index:11;
+  max-height:75vh;
+  overflow-y:auto;
+}
+
+.sheet.open{bottom:0;}
+
+.sheet h3{
+  text-align:center;
+  margin-bottom:22px;
+}
+
+/* ================= OPTIONS ================= */
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.option{
+  padding:14px;
+  border-radius:14px;
+  background:#1e293b;
+  text-align:center;
+  cursor:pointer;
+  font-size:14px;
+  transition:transform .25s ease, background .25s ease, box-shadow .25s;
+}
+
+/* hover */
+.option:hover{
+  background:#2563eb;
+  transform:translateY(-4px);
+}
+
+/* selected glow */
+.option.selected{
+  background:#2563eb;
+  box-shadow:0 0 0 2px rgba(37,99,235,.8),
+             0 10px 25px rgba(37,99,235,.6);
+  transform:scale(1.04);
+}
+
+/* mobile */
+@media(max-width:420px){
+  .options{grid-template-columns:1fr;}
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:14px;
+  font-size:13px;
+  opacity:.6;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}

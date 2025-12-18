@@ -1,0 +1,168 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #0b1320; /* Dark navy background */
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+header {  
+  display: flex;  
+  align-items: center;  
+  justify-content: space-between;  
+  background: linear-gradient(90deg, #0d1b2a, #112f4a);  
+  padding: 15px 20px;  
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);  
+  width: 100%;  
+  box-sizing: border-box;
+}  
+
+.brand {  
+  display: flex;  
+  align-items: center;  
+  gap: 10px;  
+}  
+
+.logo {  
+  font-size: 24px;  
+}  
+
+.title {  
+  font-size: 18px;  
+  font-weight: bold;  
+}  
+
+.back-btn {  
+  background: linear-gradient(180deg, #00aaff, #0088cc);  
+  color: #fff;  
+  padding: 8px 14px;  
+  border-radius: 10px;  
+  font-weight: 600;  
+  font-size: 14px;  
+  box-shadow: 0 8px 20px rgba(0,170,255,0.18);  
+  cursor: pointer;  
+  border: none;  
+  margin-right: 10px; /* prevent sticking to edge */
+}  
+
+.back-btn:hover {  
+  background: #0088cc;  
+}
+
+/* Heading Box */
+.heading-box {
+  margin: 20px 0;
+  background: #162447; 
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #4da6ff;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.6);
+  text-align: center;
+}
+
+/* Subjects Grid */
+.subjects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Subject Box */
+.subject-box {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  background: linear-gradient(135deg, #1E3A8A, #2563EB);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 16px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.45);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.subject-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 16px rgba(0,0,0,0.6);
+  background: linear-gradient(135deg, #1E40AF, #1D4ED8);
+}
+
+.subject-box a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Edit/Delete Buttons */
+.subject-box .edit-btn,
+.subject-box .delete-btn {
+  position: absolute;
+  top: 8px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subject-box .edit-btn {
+  left: 8px;
+  background: rgba(0, 150, 255, 0.8);
+  color: white;
+}
+.subject-box .edit-btn:hover {
+  background: #1d4ed8;
+}
+
+.subject-box .delete-btn {
+  right: 8px;
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+}
+.subject-box .delete-btn:hover {
+  background: red;
+}
+
+/* Add Form */
+.add-form {
+  margin: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.add-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  flex: 1;
+}
+
+.add-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1E3A8A, #2563EB);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+}
+
+.add-btn:hover {
+  background: linear-gradient(135deg, #1E40AF, #1D4ED8);
+}
