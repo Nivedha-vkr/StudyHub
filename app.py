@@ -6,10 +6,12 @@ import sqlite3
 from db import init_db
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 from db import get_db
 
 app = Flask(__name__)
+app.secret_key = "studyhub-secret-key"
+
+EVENTS = []
 
 #------------
 DB_NAME = "study_portal.db"
@@ -119,7 +121,6 @@ def landing():
 def login_page():
     return render_template("login.html")
 
-
 @app.route("/login", methods=["POST"])
 def login_post():
     data = request.get_json()
@@ -133,15 +134,56 @@ def login_post():
     conn.close()
 
     if user and check_password_hash(user["password"], password):
+        session["user_id"] = user["id"]
+        session["role"] = user["role"]
+      
         return jsonify({
             "status": "success",
-            "redirect": url_for("department")
-        })
+            "redirect": url_for("home") #main
+            })
 
     return jsonify({
         "status": "error",
         "message": "Invalid credentials"
     })
+
+'''
+@app.route("/signup", methods=["POST"])
+def signup():
+    data = request.get_json()
+    username = data["username"]
+    email = data["email"].strip()
+    password = generate_password_hash(data["password"])
+
+    conn = get_db()
+    cur = conn.cursor()
+
+    try:
+        cur.execute(
+            "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+            (username, email, password, "student")
+        )
+        conn.commit()
+    except sqlite3.IntegrityError as e:
+        if "username" in str(e).lower():
+            msg = "Username already exists"
+        elif "email" in str(e).lower():
+            msg = "Email already exists"
+        else:
+            msg = "Account already exists"
+
+        return jsonify({
+            "status": "error",
+            "message": msg
+        })
+    finally:
+        conn.close()
+
+    return jsonify({
+        "status": "success",
+        "redirect": url_for("main")
+    })
+'''
 
 @app.route("/signup", methods=["POST"])
 def signup():
@@ -169,8 +211,14 @@ def signup():
 
     return jsonify({
         "status": "success",
-        "redirect": url_for("department")
+        "redirect": url_for("main")
     })
+
+
+@app.route("/logout")
+def logout():
+    session.clear()   # 🔑 removes user_id, role, username, email
+    return redirect(url_for("login_page"))
 
 @app.route("/save-department", methods=["POST"])
 def save_department():
@@ -200,6 +248,9 @@ def register_page():
 
 @app.route("/main")
 def main():
+    if session.get("role") != "student":
+        return redirect(url_for("home"))
+    
     return render_template("main.html")
 
 @app.route("/department")
@@ -208,7 +259,14 @@ def department():
 
 @app.route("/home")
 def home():
-    return render_template("home.html")
+     if "user_id" not in session:
+        return redirect(url_for("login_page"))
+     
+     return render_template(
+        "home.html",
+        username=session.get("username"),
+        email=session.get("email")
+    )
 
 
 @app.route("/previous-papers")
@@ -219,10 +277,42 @@ def previous_papers():
 def chatbot():
     return render_template("chat.html")
 
-@app.route("/events")
+
+#FOR EVENTS AND ANNOUNCEMENTS
+
+@app.route("/events", methods=["GET", "POST"])
 def events_page():
-    return render_template("admin_events.html")
-#----------
+    role = session.get("role")
+
+    # ---------- ADMIN ----------
+    if role == "admin":
+        if request.method == "POST":
+            event_id = request.form.get("event_id")
+
+            if event_id:
+                for e in EVENTS:
+                    if e["id"] == int(event_id):
+                        e["title"] = request.form["title"]
+                        e["description"] = request.form["description"]
+                        e["category"] = request.form["category"]
+                        e["date"] = request.form["date"]
+                        break
+            else:
+                EVENTS.append({
+                    "id": len(EVENTS) + 1,
+                    "title": request.form["title"],
+                    "description": request.form["description"],
+                    "category": request.form["category"],
+                    "date": request.form["date"]
+                })
+
+        return render_template("admin_events.html", events=EVENTS)
+
+    # ---------- STUDENT ----------
+    return render_template("events.html", events=EVENTS)
+
+
+
 #----------batches------
 # ---------------- FLOW ----------------
 @app.route("/batch", methods=["GET","POST"])
